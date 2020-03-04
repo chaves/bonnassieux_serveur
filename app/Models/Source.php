@@ -30,6 +30,11 @@ class Source extends Model
         return $this->belongsToMany('App\Models\City');
     }
 
+    public function regions()
+    {
+        return $this->belongsToMany('App\Models\Region');
+    }
+
     public function domains()
     {
         return $this->belongsToMany('App\Models\Domain');

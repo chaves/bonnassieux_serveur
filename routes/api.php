@@ -25,19 +25,27 @@ Route::post('sources/{id}/validate', 'SourceController@updateValid');
 Route::post('sources/ref_id/{id}/update', 'SourceController@updateReference');
 
 Route::post('sources/city/store', 'SourceController@storeCity');
+Route::post('sources/region/store', 'SourceController@storeRegion');
 Route::post('sources/domain/store', 'SourceController@storeDomain');
 Route::post('sources/person/store', 'SourceController@storePerson');
 Route::post('sources/group/store', 'SourceController@storeGroup');
-Route::post('sources/matter/store', 'SourceController@storeMatter');
+
+Route::post('cities/add', 'Cityontroller@add');
+Route::post('regions/add', 'RegionController@add');
+Route::post('domains/add', 'DomainController@add');
+Route::post('persons/add', 'PersonController@add');
+Route::post('groups/add', 'GroupController@add');
 
 Route::get('domains', 'DomainController@index');
 Route::get('industries', 'IndustryController@index');
+Route::get('regions', 'RegionController@index');
 
 Route::get('cities/counts', 'CityController@counts');
 Route::get('persons/counts', 'PersonController@counts');
 Route::get('domains/counts', 'DomainController@counts');
 Route::get('groups/counts', 'GroupController@counts');
 Route::get('matters/counts', 'MatterController@counts');
+Route::get('regions/counts', 'RegionController@counts');
 
 Route::get('persons/search/{search}', 'PersonController@search');
 Route::get('groups/search/{search}', 'GroupController@search');

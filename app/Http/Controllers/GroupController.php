@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
-use App\Models\Domain;
 use Illuminate\Http\Request;
 use App\Models\Group;
 
@@ -17,6 +15,14 @@ class GroupController extends Controller
     public function counts()
     {
         return Group::withCount('sources')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->get();
+    }
+
+    public function add(Request $request)
+    {
+        $group = new Group();
+        $group->name = $request->input('item');
+        $group->save();
+        return $group->id;
     }
 
 }

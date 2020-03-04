@@ -16,4 +16,12 @@ class DomainController extends Controller
     {
         return Domain::withCount('sources')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->get();
     }
+
+    public function add(Request $request)
+    {
+        $domain = new Domain();
+        $domain->name = $request->input('item');
+        $domain->save();
+        return $domain->id;
+    }
 }

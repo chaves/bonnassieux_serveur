@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Matter extends Model
+class Region extends Model
 {
     public $timestamps = false;
     protected $fillable =
         [
-            'name'
+            'region'
         ];
 
     public function sources()

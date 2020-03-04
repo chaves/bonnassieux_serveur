@@ -9,12 +9,12 @@ class SourceController extends Controller
 {
     public function index()
     {
-        return Source::with('cities', 'domains', 'persons', 'groups', 'matters')->where('validated', 0)->orderBy('date', 'asc')->paginate(200);
+        return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', 0)->orderBy('date', 'asc')->paginate(200);
     }
 
     public function validated(Request $request)
     {
-        return Source::with('cities', 'domains', 'persons', 'groups', 'matters')->where('validated', 1)->orderBy('date', 'asc')->paginate(200);
+        return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', 1)->orderBy('date', 'asc')->paginate(200);
     }
 
     public function update(Request $request)
@@ -41,6 +41,12 @@ class SourceController extends Controller
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
         $source->cities()->attach($request->input('city_id'));
+    }
+
+    public function storeRegion(Request $request)
+    {
+        $source = Source::findId($request->input('source_id'))->firstOrFail();
+        $source->cities()->attach($request->input('region_id'));
     }
 
     public function storeDomain(Request $request)

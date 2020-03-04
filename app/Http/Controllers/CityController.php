@@ -20,4 +20,12 @@ class CityController extends Controller
         return City::withCount('sources')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->take(200)->get();
     }
 
+    public function add(Request $request)
+    {
+        $city = new City();
+        $city->name = $request->input('item');
+        $city->save();
+        return $city->id;
+    }
+
 }

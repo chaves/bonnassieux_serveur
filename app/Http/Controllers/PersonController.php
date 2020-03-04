@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Matter;
 use Illuminate\Http\Request;
 use App\Models\Person;
 
@@ -16,6 +15,14 @@ class PersonController extends Controller
     public function counts()
     {
         return Person::withCount('sources')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->get();
+    }
+
+    public function add(Request $request)
+    {
+        $person = new Person();
+        $person->name = $request->input('item');
+        $person->save();
+        return $person->id;
     }
 
 }
