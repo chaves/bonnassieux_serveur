@@ -30,6 +30,12 @@ Route::post('sources/domain/store', 'SourceController@storeDomain');
 Route::post('sources/person/store', 'SourceController@storePerson');
 Route::post('sources/group/store', 'SourceController@storeGroup');
 
+Route::delete('sources/city/remove/{id}', 'SourceController@removeCity');
+Route::delete('sources/region/remove/{id}', 'SourceController@removeRegion');
+Route::delete('sources/domain/remove/{id}', 'SourceController@removeDomain');
+Route::delete('sources/person/remove/{id}', 'SourceController@removePerson');
+Route::delete('sources/group/remove/{id}', 'SourceController@removeGroup');
+
 Route::post('cities/add', 'Cityontroller@add');
 Route::post('regions/add', 'RegionController@add');
 Route::post('domains/add', 'DomainController@add');

@@ -37,36 +37,72 @@ class SourceController extends Controller
         return $out;
     }
 
+    // CITIES
     public function storeCity(Request $request)
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
         $source->cities()->attach($request->input('city_id'));
     }
 
+    public function removeCity(Request $request)
+    {
+        $source = Source::findId($request->input('source_id'))->firstOrFail();
+        $source->cities()->detach($request->segment(5));
+    }
+
+    // REGIONS
     public function storeRegion(Request $request)
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
         $source->regions()->attach($request->input('region_id'));
     }
 
+    public function removeRegion(Request $request)
+    {
+        $source = Source::findId($request->input('source_id'))->firstOrFail();
+        $source->regions()->detach($request->segment(5));
+    }
+
+    // DOMAINS
     public function storeDomain(Request $request)
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
         $source->domains()->attach($request->input('domain_id'));
     }
 
+    public function removeDomain(Request $request)
+    {
+        $source = Source::findId($request->input('source_id'))->firstOrFail();
+        $source->domains()->detach($request->segment(5));
+    }
+
+    // PERSONS
     public function storePerson(Request $request)
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
         $source->persons()->attach($request->input('person_id'));
     }
 
+    public function removePerson(Request $request)
+    {
+        $source = Source::findId($request->input('source_id'))->firstOrFail();
+        $source->persons()->detach($request->segment(5));
+    }
+
+    // GROUPS
     public function storeGroup(Request $request)
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
         $source->groups()->attach($request->input('group_id'));
     }
 
+    public function removeGroup(Request $request)
+    {
+        $source = Source::findId($request->input('source_id'))->firstOrFail();
+        $source->groups()->detach($request->segment(5));
+    }
+
+    // MATTERS
     public function storeMatter(Request $request)
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
