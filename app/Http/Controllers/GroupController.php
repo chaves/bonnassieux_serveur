@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Domain;
 use Illuminate\Http\Request;
 use App\Models\Group;
 
@@ -24,5 +25,10 @@ class GroupController extends Controller
         $group->save();
         return $group->id;
     }
-
+    public function remove(Request $request)
+    {
+        $group = Group::find($request->segment(4));
+        $group->sources()->detach();
+        $group->delete();
+    }
 }

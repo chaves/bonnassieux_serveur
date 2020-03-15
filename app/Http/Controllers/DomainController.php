@@ -24,4 +24,11 @@ class DomainController extends Controller
         $domain->save();
         return $domain->id;
     }
+
+    public function remove(Request $request)
+    {
+        $domain = Domain::find($request->segment(4));
+        $domain->sources()->detach();
+        $domain->delete();
+    }
 }

@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Group;
+use App\Models\Domain;
 use Illuminate\Http\Request;
 use App\Models\City;
 
 class CityController extends Controller
 {
+
+    public function index()
+    {
+        return City::get();
+    }
+
     public function search(Request $request)
     {
         if ($request->segment(4)) {
@@ -26,6 +32,13 @@ class CityController extends Controller
         $city->name = $request->input('item');
         $city->save();
         return $city->id;
+    }
+
+    public function remove(Request $request)
+    {
+        $city = City::find($request->segment(4));
+        $city->sources()->detach();
+        $city->delete();
     }
 
 }

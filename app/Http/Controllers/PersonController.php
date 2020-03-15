@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Models\Person;
 
@@ -23,6 +24,13 @@ class PersonController extends Controller
         $person->name = $request->input('item');
         $person->save();
         return $person->id;
+    }
+
+    public function remove(Request $request)
+    {
+        $person = Person::find($request->segment(4));
+        $person->sources()->detach();
+        $person->delete();
     }
 
 }
