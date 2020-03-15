@@ -46,7 +46,7 @@ class SourceController extends Controller
     public function storeRegion(Request $request)
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
-        $source->cities()->attach($request->input('region_id'));
+        $source->regions()->attach($request->input('region_id'));
     }
 
     public function storeDomain(Request $request)
