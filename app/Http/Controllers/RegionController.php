@@ -13,6 +13,11 @@ class RegionController extends Controller
         return Region::orderBy('name', 'asc')->get();
     }
 
+    public function search(Request $request)
+    {
+        return Region::where('name', 'like', $request->segment(4). '%')->orderBy('name', 'asc')->take(20)->get();
+    }
+
     public function counts()
     {
         return Region::withCount('sources')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->get();

@@ -65,7 +65,7 @@ Route::get('persons/search/{search}', 'PersonController@search');
 Route::get('groups/search/{search}', 'GroupController@search');
 Route::get('matters/search/{search}', 'MatterController@search');
 Route::get('cities/search/{search}', 'CityController@search');
-
+Route::get('regions/search/{search}', 'RegionController@search');
 
 
 

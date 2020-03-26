@@ -9,12 +9,12 @@ class SourceController extends Controller
 {
     public function index()
     {
-        return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', 0)->orderBy('date', 'asc')->paginate(200);
+        return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', 0)->orderBy('date', 'asc')->paginate(250);
     }
 
     public function validated(Request $request)
     {
-        return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', 1)->orderBy('date', 'asc')->paginate(200);
+        return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', 1)->orderBy('date', 'asc')->paginate(250);
     }
 
     public function update(Request $request)
