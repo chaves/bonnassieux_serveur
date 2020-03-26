@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Domain;
 use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Models\Person;
 
 class PersonController extends Controller
 {
+
+    public function index()
+    {
+        return Person::orderBy('name', 'asc')->get();
+    }
+
     public function search(Request $request)
     {
         return Person::where('name', 'like', $request->segment(4). '%')->orderBy('name', 'asc')->take(20)->get();

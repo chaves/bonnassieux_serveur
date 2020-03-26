@@ -52,6 +52,7 @@ Route::get('cities', 'CityController@index');
 Route::get('domains', 'DomainController@index');
 Route::get('industries', 'IndustryController@index');
 Route::get('regions', 'RegionController@index');
+Route::get('persons', 'PersonController@index');
 
 Route::get('cities/counts', 'CityController@counts');
 Route::get('persons/counts', 'PersonController@counts');
