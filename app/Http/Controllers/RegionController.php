@@ -10,7 +10,7 @@ class RegionController extends Controller
 {
     public function index()
     {
-        return Region::get();
+        return Region::orderBy('name', 'asc')->get();
     }
 
     public function counts()

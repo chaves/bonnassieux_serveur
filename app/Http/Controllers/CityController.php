@@ -11,7 +11,7 @@ class CityController extends Controller
 
     public function index()
     {
-        return City::get();
+        return City::orderBy('name', 'asc')->get();
     }
 
     public function search(Request $request)

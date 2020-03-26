@@ -9,7 +9,7 @@ class DomainController extends Controller
 {
     public function index()
     {
-        return Domain::get();
+        return Domain::orderBy('name', 'asc')->get();
     }
 
     public function counts()
