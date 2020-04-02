@@ -18,6 +18,7 @@ class SourceController extends Controller
 
             return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', $validated)
                 ->where('date', '>=', $parts[0])
+                ->where('date', '<=', $parts[1])
                 ->orderBy('date', 'asc')->paginate(100);
         }
         return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', $validated)->orderBy('date', 'asc')->paginate(100);
