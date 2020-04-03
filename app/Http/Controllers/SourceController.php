@@ -16,12 +16,12 @@ class SourceController extends Controller
             $parts[0] = $parts[0]. "-01-01";
             $parts[1] = $parts[1]. "-12-31";
 
-            return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', $validated)
+            return Source::with('cities', 'domains', 'persons', 'groups', 'regions')->where('validated', $validated)
                 ->where('date', '>=', $parts[0])
                 ->where('date', '<=', $parts[1])
                 ->orderBy('date', 'asc')->paginate(100);
         }
-        return Source::with('cities', 'domains', 'persons', 'groups', 'matters', 'regions')->where('validated', $validated)->orderBy('date', 'asc')->paginate(100);
+        return Source::with('cities', 'domains', 'persons', 'groups', 'regions')->where('validated', $validated)->orderBy('date', 'asc')->paginate(100);
     }
 
     public function index(Request $request)
