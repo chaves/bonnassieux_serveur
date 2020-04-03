@@ -10,9 +10,9 @@ class Coordinate extends Model
     protected $table = 'coordinates';
     public $timestamps = false;
 
-    public function scopeFindId($query, $id)
+    public function scopeFindCityId($query, $id)
     {
-        return $query->where('id', $id);
+        return $query->where('city_id', $id);
     }
 
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Person;
 use Illuminate\Http\Request;
 use App\Models\Source;
+use App\Models\City;
+use App\Models\Coordinate;
 
 class SourceController extends Controller
 {
@@ -58,6 +61,17 @@ class SourceController extends Controller
     public function storeCity(Request $request)
     {
         $source = Source::findId($request->input('source_id'))->firstOrFail();
+
+        $city = City::findId($request->input('city_id'))->first();
+        // Si la ville n'est pas dans le dictionnaire
+        if (!$city) {
+            $coordinates = Coordinate::findCityId($request->input('city_id'))->first();
+            $city = new City();
+            $city->id = $coordinates->city_id;
+            $city->name = strtolower($coordinates->nom);
+            $city->save();
+        }
+
         $source->cities()->attach($request->input('city_id'));
     }
 
