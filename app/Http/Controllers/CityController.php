@@ -22,7 +22,7 @@ class CityController extends Controller
 
     public function counts()
     {
-        return City::withCount('sources')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->take(200)->get();
+        return City::withCount('sources')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->get();
     }
 
     public function countsCoordinates()
