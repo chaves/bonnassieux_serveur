@@ -4,17 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Coordinate extends Model
 {
 
-    protected $table = 'cities';
+    protected $table = 'coordinates';
     public $timestamps = false;
-
-
-    public function sources()
-    {
-        return $this->belongsToMany('App\Models\Source');
-    }
 
     public function scopeFindId($query, $id)
     {

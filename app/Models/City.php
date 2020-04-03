@@ -16,6 +16,11 @@ class City extends Model
         return $this->belongsToMany('App\Models\Source');
     }
 
+    public function coordinates()
+    {
+        return $this->hasOne('App\Models\Coordinate');
+    }
+
     public function scopeFindId($query, $id)
     {
         return $query->where('id', $id);

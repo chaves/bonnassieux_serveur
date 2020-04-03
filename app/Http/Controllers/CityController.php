@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Domain;
 use Illuminate\Http\Request;
 use App\Models\City;
 
@@ -24,6 +23,11 @@ class CityController extends Controller
     public function counts()
     {
         return City::withCount('sources')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->take(200)->get();
+    }
+
+    public function countsCoordinates()
+    {
+        return City::withCount('sources')->with('coordinates')->orderBy('sources_count', 'desc')->orderBy('name', 'asc')->get();
     }
 
     public function add(Request $request)

@@ -61,6 +61,8 @@ Route::get('groups/counts', 'GroupController@counts');
 Route::get('matters/counts', 'MatterController@counts');
 Route::get('regions/counts', 'RegionController@counts');
 
+Route::get('cities/map', 'CityController@countsCoordinates');
+
 Route::get('persons/search/{search}', 'PersonController@search');
 Route::get('groups/search/{search}', 'GroupController@search');
 Route::get('matters/search/{search}', 'MatterController@search');
