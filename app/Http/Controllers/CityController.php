@@ -17,7 +17,7 @@ class CityController extends Controller
     public function search(Request $request)
     {
         if ($request->segment(4)) {
-            return City::where('name', 'like', $request->segment(4). '%')->orderBy('name', 'asc')->take(20)->get();
+            return City::where('name', 'like', '%' . $request->segment(4). '%')->orderBy('name', 'asc')->take(20)->get();
         }
     }
 

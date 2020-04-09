@@ -10,7 +10,7 @@ class GroupController extends Controller
 {
     public function search(Request $request)
     {
-        return Group::where('name', 'like', $request->segment(4). '%')->orderBy('name', 'asc')->take(20)->get();
+        return Group::where('name', 'like', '%' . $request->segment(4). '%')->orderBy('name', 'asc')->take(20)->get();
     }
 
     public function counts()
