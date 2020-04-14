@@ -19,9 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('sources', 'SourceController@index')->name('sources');
 Route::get('sources/validated', 'SourceController@validated')->name('validated');
+Route::get('sources/review', 'SourceController@review')->name('review');
 
 Route::post('sources/{id}/update', 'SourceController@update');
 Route::post('sources/{id}/validate', 'SourceController@updateValid');
+Route::post('sources/{id}/review', 'SourceController@updateReview');
 Route::post('sources/ref_id/{id}/update', 'SourceController@updateReference');
 
 Route::post('sources/city/store', 'SourceController@storeCity');

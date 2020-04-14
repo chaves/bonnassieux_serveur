@@ -11,7 +11,7 @@ use App\Models\Coordinate;
 class SourceController extends Controller
 {
 
-    private function _sourceQuery($request, $validated) {
+    private function _sourceQuery($request, $validated, $review = 0) {
         $query = $request->query('selected');
         $parts = explode('-', $query);
 
@@ -19,12 +19,34 @@ class SourceController extends Controller
             $parts[0] = $parts[0]. "-01-01";
             $parts[1] = $parts[1]. "-12-31";
 
-            return Source::with('cities', 'domains', 'persons', 'groups', 'regions')->where('validated', $validated)
-                ->where('date', '>=', $parts[0])
-                ->where('date', '<=', $parts[1])
-                ->orderBy('date', 'asc')->paginate(100);
+            if($review == 1) {
+                return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
+                    ->where('validated', $validated)
+                    ->where('review', 1)
+                    ->where('date', '>=', $parts[0])
+                    ->where('date', '<=', $parts[1])
+                    ->orderBy('date', 'asc')->paginate(100);
+            } else {
+                return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
+                    ->where('validated', $validated)
+                    ->where('date', '>=', $parts[0])
+                    ->where('date', '<=', $parts[1])
+                    ->orderBy('date', 'asc')->paginate(100);
+            }
         }
-        return Source::with('cities', 'domains', 'persons', 'groups', 'regions')->where('validated', $validated)->orderBy('date', 'asc')->paginate(100);
+        if($review == 1) {
+            return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
+                ->where('validated', $validated)
+                ->where('review', 1)
+                ->orderBy('date', 'asc')
+                ->paginate(100);
+        } else {
+            return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
+                ->where('validated', $validated)
+                ->orderBy('date', 'asc')
+                ->paginate(100);
+        }
+
     }
 
     public function index(Request $request)
@@ -35,6 +57,11 @@ class SourceController extends Controller
     public function validated(Request $request)
     {
         return $this->_sourceQuery($request, 1);
+    }
+
+    public function review(Request $request)
+    {
+        return $this->_sourceQuery($request, 0, 1);
     }
 
     public function update(Request $request)
@@ -52,6 +79,17 @@ class SourceController extends Controller
             $source = Source::findId($request->segment(3))->firstOrFail();
             $request->input('validated') == False ? $out = 0 : $out = 1;
             $source->validated = $out;
+            $source->save();
+        }
+        return $out;
+    }
+
+    public function updateReview(Request $request)
+    {
+        if ($request->segment(3)) {
+            $source = Source::findId($request->segment(3))->firstOrFail();
+            $request->input('review') == False ? $out = 0 : $out = 1;
+            $source->review = $out;
             $source->save();
         }
         return $out;
