@@ -19,34 +19,18 @@ class SourceController extends Controller
             $parts[0] = $parts[0]. "-01-01";
             $parts[1] = $parts[1]. "-12-31";
 
-            if($review == 1) {
-                return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
-                    ->where('validated', $validated)
-                    ->where('review', 1)
-                    ->where('date', '>=', $parts[0])
-                    ->where('date', '<=', $parts[1])
-                    ->orderBy('date', 'asc')->paginate(100);
-            } else {
-                return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
-                    ->where('validated', $validated)
-                    ->where('date', '>=', $parts[0])
-                    ->where('date', '<=', $parts[1])
-                    ->orderBy('date', 'asc')->paginate(100);
-            }
-        }
-        if($review == 1) {
             return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
                 ->where('validated', $validated)
-                ->where('review', 1)
-                ->orderBy('date', 'asc')
-                ->paginate(100);
-        } else {
-            return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
-                ->where('validated', $validated)
-                ->orderBy('date', 'asc')
-                ->paginate(100);
+                ->where('review', $review)
+                ->where('date', '>=', $parts[0])
+                ->where('date', '<=', $parts[1])
+                ->orderBy('date', 'asc')->paginate(100);
         }
-
+        return Source::with('cities', 'domains', 'persons', 'groups', 'regions')
+            ->where('validated', $validated)
+            ->where('review', $review)
+            ->orderBy('date', 'asc')
+            ->paginate(100);
     }
 
     public function index(Request $request)
