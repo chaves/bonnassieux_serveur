@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Source;
 use App\Models\City;
 use App\Models\Coordinate;
@@ -171,5 +171,16 @@ class SourceController extends Controller
         }
     }
 
+    // FROM DICTIONARIES
 
+    public function sourcesFromDictionaries(Request $request)
+    {
+        $table = $request->segment(4);
+        $id = $request->segment(5);
+        return Source::with($table)->whereHas($table,
+            function($q) use ($table, $id) {
+                $q->where($table.'.id', $id);
+            })
+            ->get();
+    }
 }

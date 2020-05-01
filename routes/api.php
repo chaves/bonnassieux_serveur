@@ -38,6 +38,8 @@ Route::delete('sources/domain/remove/{id}', 'SourceController@removeDomain');
 Route::delete('sources/person/remove/{id}', 'SourceController@removePerson');
 Route::delete('sources/group/remove/{id}', 'SourceController@removeGroup');
 
+Route::get('sources/dictionaries/{dictionary}/{id}', 'SourceController@sourcesFromDictionaries');
+
 Route::post('cities/add', 'CityController@add');
 Route::post('regions/add', 'RegionController@add');
 Route::post('domains/add', 'DomainController@add');
