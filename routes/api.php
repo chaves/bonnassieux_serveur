@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('acss_email', 'EmailController@save');
+
 Route::get('sources', 'SourceController@index')->name('sources');
 Route::get('sources/validated', 'SourceController@validated')->name('validated');
 Route::get('sources/review', 'SourceController@review')->name('review');
