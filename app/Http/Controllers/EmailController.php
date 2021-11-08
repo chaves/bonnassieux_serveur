@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Letter;
 use Illuminate\Http\Request;
 
 class EmailController extends Controller
